@@ -33,11 +33,11 @@ public class MainMenuButtonAction : MonoBehaviour
         Button niv3Button = GameObject.FindGameObjectsWithTag("Level3")[0].GetComponent<Button>();
 
 
-        if ((GameManager.Instance.PlayerData.AvoirNiveauTermine("Level2"))){
+        if ((GameManager.Instance.PlayerData.AvoirNiveauTermine("Level1"))){
             niv2Button.interactable = true;
         }
 
-        if ((GameManager.Instance.PlayerData.AvoirNiveauTermine("Level3")))
+        if ((GameManager.Instance.PlayerData.AvoirNiveauTermine("Level2")))
         {
             niv3Button.interactable = true;
         }

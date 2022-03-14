@@ -92,7 +92,7 @@ public class PlayerData
     public PlayerData(int vie = 1, int energie = 2, int score = 0,
         float volumeGeneral = 0, float volumeMusique = 0, float volumeEffet = 0,
         System.Action uiPerteEnergie = null, System.Action uiPerteVie = null,
-        System.Action gameOver = null, List<string> ChestList = null, List<string> _listLevelDone=null)
+        System.Action gameOver = null, List<string> ChestList = null, List<string> ListLevelDone=null)
     {
         this._vie = vie;
         this._energie = energie;
@@ -183,6 +183,10 @@ public class PlayerData
         this._chestOpenList.Add(nom);
     }
 
+    /// <summary>
+    /// Ajoute le niveau terminé à la liste
+    /// </summary>
+    /// <param name="nom">Nom du niveau</param>
     public void AjouterNiveauTermine(string nom)
     {
         this._listLevelDone.Add(nom);

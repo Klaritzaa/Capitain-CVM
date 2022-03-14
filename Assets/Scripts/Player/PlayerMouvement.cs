@@ -160,7 +160,7 @@ public class PlayerMouvement : MonoBehaviour
     }
 
     public void OnAction()
-    {
+    { 
         if (InteractionAction != null)
             InteractionAction();
     }
