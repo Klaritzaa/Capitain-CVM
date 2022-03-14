@@ -10,6 +10,7 @@ public class FinDeNiveau : MonoBehaviour
             Debug.Log("Félicitation, le niveau est terminé.");
             GameManager.Instance.SaveData();
             SceneManager.LoadScene("MainMenu");
+            
         }
     }
 }

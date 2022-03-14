@@ -4,10 +4,17 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuButtonAction : MonoBehaviour
 {
+
+
+
     /// <summary>
     /// Permet d'afficher un panel transmis en paramètre
     /// </summary>
     /// <param name="PanelAOuvrir">Panel à afficher</param>
+
+    PlayerData playerdata = new PlayerData();
+
+
     public void AfficherPanel(GameObject PanelAOuvrir)
     {
         PanelAOuvrir.SetActive(true);
@@ -20,6 +27,14 @@ public class MainMenuButtonAction : MonoBehaviour
     public void FermerPanel(GameObject PanelAFermer)
     {
         PanelAFermer.SetActive(false);
+    }
+
+    public void ActiverBouton( Button button)
+    {
+       Debug.Log(playerdata.ListeLevelsDone);
+        //GetComponent<PlayerData>().ListeLevelsDone();
+       
+        button.interactable = true;
     }
 
     /// <summary>

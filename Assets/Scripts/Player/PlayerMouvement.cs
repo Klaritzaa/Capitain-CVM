@@ -53,7 +53,7 @@ public class PlayerMouvement : MonoBehaviour
 
     /// <summary>
     /// Référence au component SpriteRenderer
-    /// </summary>
+    /// </summary>s
     private SpriteRenderer _sr;
 
     /// <summary>

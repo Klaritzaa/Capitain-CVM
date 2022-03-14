@@ -63,11 +63,16 @@ public class PlayerData
     /// Permet d'identifier les actions à réaliser lors d'un gameover
     /// </summary>
     public System.Action Gameover;
+    /// <summary>
+    /// Permet d'identifier les actions à réaliser lors d'un gameover
+    /// </summary>
+    public List<string> _listLevelDone;
 
     public int Energie { get { return this._energie; } }
     public int Vie { get { return this._vie; } }
     public int Score { get { return this._score; } }
     public string[] ListeCoffreOuvert { get { return this._chestOpenList.ToArray(); } }
+    public string[] ListeLevelsDone { get { return this._listLevelDone.ToArray(); } }
 
     public PlayerData()
     {
@@ -81,12 +86,13 @@ public class PlayerData
         this.UIPerteVie = null;
         this.Gameover = null;
         this._chestOpenList = new List<string>();
+        this._listLevelDone = new List<string>();
     }
 
     public PlayerData(int vie = 1, int energie = 2, int score = 0,
         float volumeGeneral = 0, float volumeMusique = 0, float volumeEffet = 0,
         System.Action uiPerteEnergie = null, System.Action uiPerteVie = null,
-        System.Action gameOver = null, List<string> ChestList = null)
+        System.Action gameOver = null, List<string> ChestList = null, List<string> _listLevelDone=null)
     {
         this._vie = vie;
         this._energie = energie;
@@ -98,6 +104,7 @@ public class PlayerData
         this.UIPerteVie += uiPerteVie;
         this.Gameover += gameOver;
         this._chestOpenList = new List<string>();
+        this._listLevelDone = new List<string>();
         if (ChestList != null)
             this._chestOpenList = ChestList;
     }
