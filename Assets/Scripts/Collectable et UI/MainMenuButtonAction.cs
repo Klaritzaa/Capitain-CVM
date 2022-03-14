@@ -12,9 +12,6 @@ public class MainMenuButtonAction : MonoBehaviour
     /// </summary>
     /// <param name="PanelAOuvrir">Panel à afficher</param>
 
-    PlayerData playerdata = new PlayerData();
-
-
     public void AfficherPanel(GameObject PanelAOuvrir)
     {
         PanelAOuvrir.SetActive(true);
@@ -29,12 +26,22 @@ public class MainMenuButtonAction : MonoBehaviour
         PanelAFermer.SetActive(false);
     }
 
-    public void ActiverBouton( Button button)
+    public void ActiverBouton()
     {
-       Debug.Log(playerdata.ListeLevelsDone);
-        //GetComponent<PlayerData>().ListeLevelsDone();
-       
-        button.interactable = true;
+   
+        Button niv2Button = GameObject.FindGameObjectsWithTag("Level2")[0].GetComponent<Button>();
+        Button niv3Button = GameObject.FindGameObjectsWithTag("Level3")[0].GetComponent<Button>();
+
+
+        if ((GameManager.Instance.PlayerData.AvoirNiveauTermine("Level2"))){
+            niv2Button.interactable = true;
+        }
+
+        if ((GameManager.Instance.PlayerData.AvoirNiveauTermine("Level3")))
+        {
+            niv3Button.interactable = true;
+        }
+
     }
 
     /// <summary>
@@ -43,6 +50,10 @@ public class MainMenuButtonAction : MonoBehaviour
     /// <param name="nom">Nom du niveau à charger</param>
     public void ChargerNiveau(string nom)
     {
+        /*if ((GameManager.Instance.PlayerData.AvoirNiveauTermine(nom))
+            this._button.interactable = true;*/
+           
+
         SceneManager.LoadScene(nom);
     }
 

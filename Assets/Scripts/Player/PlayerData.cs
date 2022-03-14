@@ -64,9 +64,9 @@ public class PlayerData
     /// </summary>
     public System.Action Gameover;
     /// <summary>
-    /// Permet d'identifier les actions à réaliser lors d'un gameover
+    /// Permet d'identifier les niveaux terminés
     /// </summary>
-    public List<string> _listLevelDone;
+    private List<string> _listLevelDone;
 
     public int Energie { get { return this._energie; } }
     public int Vie { get { return this._vie; } }
@@ -181,6 +181,16 @@ public class PlayerData
     public void AjouterCoffreOuvert(string nom)
     {
         this._chestOpenList.Add(nom);
+    }
+
+    public void AjouterNiveauTermine(string nom)
+    {
+        this._listLevelDone.Add(nom);
+    }
+
+    public bool AvoirNiveauTermine(string nom)
+    {
+        return this._listLevelDone.Contains(nom);
     }
 
     /// <summary>
