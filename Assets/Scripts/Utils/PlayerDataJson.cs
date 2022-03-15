@@ -23,7 +23,9 @@ public static class PlayerDataJson
         json += tab + "\"volumeEffet\":" + data.VolumeEffet.ToString().Replace(',', '.') + "," + newline;
         json += tab + "\"niveauTermine\":[";
 
-        if (data.ListeLevelsDone.Length > 0)
+        if (data.ListeLevelsDone.Length <= 0)
+            json += "]" + newline;
+        else
         {
             json += newline;
 
@@ -38,10 +40,9 @@ public static class PlayerDataJson
 
             json += tab + "]" + newline;
         }
-        else json += "]" + newline;
-        json += "}";
 
         json += tab + "\"chestOpenList\":[";
+
         if (data.ListeCoffreOuvert.Length > 0)
         {
             json += newline;
@@ -136,10 +137,11 @@ public static class PlayerDataJson
                             .Replace("\"", string.Empty));
                     }
                     break;
+
             }
         }
 
-        return new PlayerData(vie, energie, score, vlmGeneral, vlmMusique, vlmEffet, ListLevelDone: niveaux, ChestList: chests);
+        return new PlayerData(vie, energie, score, vlmGeneral, vlmMusique, vlmEffet, ListLevelDone : niveaux, ChestList: chests);
     }
 }
 

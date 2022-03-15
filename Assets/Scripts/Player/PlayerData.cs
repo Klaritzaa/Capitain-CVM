@@ -92,7 +92,7 @@ public class PlayerData
     public PlayerData(int vie = 1, int energie = 2, int score = 0,
         float volumeGeneral = 0, float volumeMusique = 0, float volumeEffet = 0,
         System.Action uiPerteEnergie = null, System.Action uiPerteVie = null,
-        System.Action gameOver = null, List<string> ChestList = null, List<string> ListLevelDone=null)
+        System.Action gameOver = null, List<string> ListLevelDone=null, List<string> ChestList = null)
     {
         this._vie = vie;
         this._energie = energie;
@@ -104,9 +104,12 @@ public class PlayerData
         this.UIPerteVie += uiPerteVie;
         this.Gameover += gameOver;
         this._chestOpenList = new List<string>();
-        this._listLevelDone = new List<string>();
         if (ChestList != null)
-            this._chestOpenList = ChestList;
+                    this._chestOpenList = ChestList;
+
+        this._listLevelDone = new List<string>();
+        if (ListLevelDone != null)
+            this._listLevelDone = ListLevelDone;
     }
 
     /// <summary>

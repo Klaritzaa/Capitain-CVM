@@ -13,8 +13,8 @@ public class EnnemyBehaviour : MonoBehaviour
     /// <summary>
     /// Angle de tolérange pour le calcul du saut sur la tête
     /// </summary>
-    [SerializeField]
-    private float _toleranceAngle = 1.5f;
+    /*[SerializeField]
+    private float _toleranceAngle = 1.5f;*/
     /// <summary>
     /// Décrit la durée de l'invulnaribilité
     /// </summary>
