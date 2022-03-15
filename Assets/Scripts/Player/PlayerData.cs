@@ -42,6 +42,14 @@ public class PlayerData
     /// </summary>
     private int _score;
     /// <summary>
+    /// Représente le nombre de chapeaux récoltés
+    /// </summary>
+    private int _hatCount;
+    /// <summary>
+    /// Représente le nombre de convention récoltées
+    /// </summary>
+    private int _convCount;
+    /// <summary>
     /// Liste des coffres ouverts dans le jeu
     /// </summary>
     private List<string> _chestOpenList;
@@ -73,6 +81,8 @@ public class PlayerData
     public int Score { get { return this._score; } }
     public string[] ListeCoffreOuvert { get { return this._chestOpenList.ToArray(); } }
     public string[] ListeLevelsDone { get { return this._listLevelDone.ToArray(); } }
+    public int HatCount { get { return this._hatCount; } }
+    public int ConventionCount { get { return this._convCount; } }
 
     public PlayerData()
     {
@@ -87,12 +97,14 @@ public class PlayerData
         this.Gameover = null;
         this._chestOpenList = new List<string>();
         this._listLevelDone = new List<string>();
+        this._hatCount = 0;
+        this._convCount = 0;
     }
 
     public PlayerData(int vie = 1, int energie = 2, int score = 0,
         float volumeGeneral = 0, float volumeMusique = 0, float volumeEffet = 0,
         System.Action uiPerteEnergie = null, System.Action uiPerteVie = null,
-        System.Action gameOver = null, List<string> ListLevelDone=null, List<string> ChestList = null)
+        System.Action gameOver = null, List<string> ListLevelDone=null, List<string> ChestList = null,int hatCount=0,int convCount=0)
     {
         this._vie = vie;
         this._energie = energie;
@@ -110,6 +122,8 @@ public class PlayerData
         this._listLevelDone = new List<string>();
         if (ListLevelDone != null)
             this._listLevelDone = ListLevelDone;
+        this._hatCount = hatCount;
+        this._convCount = convCount;
     }
 
     /// <summary>
@@ -124,6 +138,18 @@ public class PlayerData
         {
             this.DecrVie();
         }
+    }
+
+
+    public void IncrHat(int gain = 1)
+    {
+        this._hatCount += gain;
+
+    }
+
+    public void IncrConv(int gain = 1)
+    {
+        this._convCount += gain;
     }
 
     /// <summary>

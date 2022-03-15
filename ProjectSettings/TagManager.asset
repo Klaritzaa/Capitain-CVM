@@ -11,6 +11,8 @@ TagManager:
   - ButtonNiv2
   - Level2
   - Level3
+  - Hat
+  - Conv
   layers:
   - Default
   - TransparentFX

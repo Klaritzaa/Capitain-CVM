@@ -16,11 +16,22 @@ public class ScoreUpgrade : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Player"))
         {
+
+            if (this.gameObject.tag.Equals("Hat"))
+            {
+                GameManager.Instance.PlayerData.IncrHat();
+            }
+            else if (this.gameObject.tag.Equals("Conv")){
+                GameManager.Instance.PlayerData.IncrConv();
+            }
+
             GameManager.Instance.AudioManager
                 .PlayClipAtPoint(_clip, this.transform.position);
             GameManager.Instance
                 .PlayerData.IncrScore(this._gainPoint);
             GameObject.Destroy(this.gameObject);
+
+            Debug.Log(this.gameObject.tag);
         }
     }
 }
