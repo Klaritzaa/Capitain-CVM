@@ -76,6 +76,8 @@ public class PlayerData
     /// </summary>
     private List<string> _listLevelDone;
 
+    private List<string> _listCollectable;
+
     public int Energie { get { return this._energie; } }
     public int Vie { get { return this._vie; } }
     public int Score { get { return this._score; } }
@@ -83,6 +85,7 @@ public class PlayerData
     public string[] ListeLevelsDone { get { return this._listLevelDone.ToArray(); } }
     public int HatCount { get { return this._hatCount; } }
     public int ConventionCount { get { return this._convCount; } }
+    public string[] CollectableList { get { return this._listCollectable.ToArray(); } }
 
     public PlayerData()
     {
@@ -97,6 +100,7 @@ public class PlayerData
         this.Gameover = null;
         this._chestOpenList = new List<string>();
         this._listLevelDone = new List<string>();
+        this._listCollectable = new List<string>();
         this._hatCount = 0;
         this._convCount = 0;
     }
@@ -104,7 +108,7 @@ public class PlayerData
     public PlayerData(int vie = 1, int energie = 2, int score = 0,
         float volumeGeneral = 0, float volumeMusique = 0, float volumeEffet = 0,
         System.Action uiPerteEnergie = null, System.Action uiPerteVie = null,
-        System.Action gameOver = null, List<string> ListLevelDone=null, List<string> ChestList = null,int hatCount=0,int convCount=0)
+        System.Action gameOver = null, List<string> ListLevelDone=null, List<string> ChestList = null, List<string> CollectableList = null,int hatCount=0,int convCount=0)
     {
         this._vie = vie;
         this._energie = energie;
@@ -115,6 +119,7 @@ public class PlayerData
         this.UIPerteEnergie += uiPerteEnergie;
         this.UIPerteVie += uiPerteVie;
         this.Gameover += gameOver;
+
         this._chestOpenList = new List<string>();
         if (ChestList != null)
                     this._chestOpenList = ChestList;
@@ -122,7 +127,13 @@ public class PlayerData
         this._listLevelDone = new List<string>();
         if (ListLevelDone != null)
             this._listLevelDone = ListLevelDone;
+
+        this._listCollectable = new List<string>();
+        if (CollectableList != null)
+            this._listCollectable = CollectableList;
+
         this._hatCount = hatCount;
+
         this._convCount = convCount;
     }
 
@@ -201,6 +212,7 @@ public class PlayerData
     public void IncrScore(int gain = 1)
     {
         this._score += gain;
+        Debug.Log("gain de point");
     }
 
     /// <summary>
@@ -226,6 +238,16 @@ public class PlayerData
         return this._listLevelDone.Contains(nom);
     }
 
+
+    public void AjouterCollectable(string nom)
+    {
+        this._listCollectable.Add(nom);
+    }
+
+    public bool AvoirCollected(string nom)
+    {
+        return this._listCollectable.Contains(nom);
+    }
     /// <summary>
     /// Détermine si le coffre est contenu dans la liste
     /// des coffres ouverts

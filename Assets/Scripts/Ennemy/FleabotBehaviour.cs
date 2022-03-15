@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 [RequireComponent(typeof(Animator))]
-public class EnnemyBehaviour : MonoBehaviour
+public class FleabotBehaviour : MonoBehaviour
 {
     /// <summary>
     /// Point de vie du personnage
@@ -13,8 +14,8 @@ public class EnnemyBehaviour : MonoBehaviour
     /// <summary>
     /// Angle de tolérange pour le calcul du saut sur la tête
     /// </summary>
-    [SerializeField]
-    private float _toleranceAngle = 1.5f;
+    /*[SerializeField]
+    private float _toleranceAngle = 1.5f;*/
     /// <summary>
     /// Décrit la durée de l'invulnaribilité
     /// </summary>
@@ -40,21 +41,23 @@ public class EnnemyBehaviour : MonoBehaviour
     /// Défini si l'objet est en cours de destruction
     /// </summary>
     private bool _destructionEnCours = false;
-
-    private void Start()
+    // Start is called before the first frame update
+    void Start()
     {
         _animator = this.gameObject.GetComponent<Animator>();
     }
 
-    private void Update()
+    // Update is called once per frame
+    void Update()
     {
         if (this._pv <= 0 && !this._destructionEnCours)
         {
             _animator.SetTrigger("Destruction");
             GameManager.Instance.PlayerData.IncrScore(this._pointDestruction);
             this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            this.gameObject.GetComponent<EnnemyPatrol>().enabled = false;
-            GameObject.Destroy(this.transform.parent.gameObject, 0.5f);
+            this.gameObject.GetComponent<EnemyJump>().enabled = false;
+            Destroy(this.gameObject, 0.5f);
+            //GameObject.Destroy(this.transform.parent.gameObject, 0.5f);
             this._destructionEnCours = true;
         }
 
