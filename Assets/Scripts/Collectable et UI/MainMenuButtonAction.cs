@@ -26,12 +26,14 @@ public class MainMenuButtonAction : MonoBehaviour
         PanelAFermer.SetActive(false);
     }
 
+    /// <summary>
+    /// Permet de rendre les niveaux accessibles si le niveau précédent est réussi
+    /// </summary>
     public void ActiverBouton()
     {
    
         Button niv2Button = GameObject.FindGameObjectsWithTag("Level2")[0].GetComponent<Button>();
         Button niv3Button = GameObject.FindGameObjectsWithTag("Level3")[0].GetComponent<Button>();
-
 
         if ((GameManager.Instance.PlayerData.AvoirNiveauTermine("Level1"))){
             niv2Button.interactable = true;
@@ -41,7 +43,6 @@ public class MainMenuButtonAction : MonoBehaviour
         {
             niv3Button.interactable = true;
         }
-
     }
 
     /// <summary>
@@ -50,10 +51,6 @@ public class MainMenuButtonAction : MonoBehaviour
     /// <param name="nom">Nom du niveau à charger</param>
     public void ChargerNiveau(string nom)
     {
-        /*if ((GameManager.Instance.PlayerData.AvoirNiveauTermine(nom))
-            this._button.interactable = true;*/
-           
-
         SceneManager.LoadScene(nom);
     }
 

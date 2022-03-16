@@ -12,24 +12,24 @@ public class EnemyJump : MonoBehaviour
     /// Vitesse de l'objet en patrouille
     /// </summary>
     [SerializeField]
-    private float _vitesse = 3f;
+    private float jumpForceX = 2f;
     /// <summary>
     /// Liste de GO représentant les points à atteindre
     /// </summary>
     [SerializeField]
-    private Transform[] _points;
+    private float jumpForceY = 4f;
     /// <summary>
     /// Référence vers la cible actuelle de l'objet
     /// </summary>
-    private Transform _cible = null;
+    //private Transform _cible = null;
     /// <summary>
     /// Permet de connaître la position actuelle de la cible dans le tableau
     /// </summary>
-    private int _indexPoint;
+   // private int _indexPoint;
     /// <summary>
     /// Seuil où l'objet change de cible de déplacement
     /// </summary>
-    private float _distanceSeuil = 0.3f;
+    //private float _distanceSeuil = 0.3f;
     /// <summary>
     /// Référence vers le sprite Renderer
     /// </summary>
@@ -51,13 +51,10 @@ public class EnemyJump : MonoBehaviour
     public float currentIdleTime = 0;
     public bool isIdle = true;
 
-    private float jumpForceX = 2f;
-    private float jumpForceY = 4f;
-
+   
     public float _PosY = 0;
    
-  
-
+ 
     // Start is called before the first frame update
     void Start()
     {
@@ -74,14 +71,13 @@ public class EnemyJump : MonoBehaviour
         if (isIdle)
         {
             currentIdleTime += Time.deltaTime;
+
             if (currentIdleTime >= idleTime)
             {
-                //Debug.Log("Jump");
+    
                 currentIdleTime = 0;
-                
                 _sr.flipX = !_sr.flipX;
                 Saute();
-
             }
         }
 
@@ -101,15 +97,17 @@ public class EnemyJump : MonoBehaviour
         {
             _saute = false;
             _tombe = true;
-
         }
 
         _PosY = transform.position.y;
     }
 
-
+    /// <summary>
+    /// Détermine si le sprite est au sol
+    /// </summary>
     private void OnCollisionEnter2D(Collision2D collision)
     {
+     
         if (collision.gameObject.tag.Equals("Tilemap"))
         {
             _ausol = true;
@@ -118,6 +116,10 @@ public class EnemyJump : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Change la direction de déplacement lors du saut et effectue le saut
+    /// avec l'animation
+    /// </summary>
     void Saute()
     {
         _saute = true;
@@ -125,11 +127,13 @@ public class EnemyJump : MonoBehaviour
 
         int direction = 0;
 
+        
         if (_sr.flipX)
             direction = 1;
         else
             direction = -1;
 
+        
         _rb.velocity = new Vector3(jumpForceX * direction, jumpForceY);
 
         _animator.SetTrigger("JumpActif");

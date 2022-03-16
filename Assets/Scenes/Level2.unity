@@ -78041,6 +78041,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fleabot
       objectReference: {fileID: 0}
+    - target: {fileID: 4334919149020594915, guid: 35c83b8ac99ea9f43b7e8b753a9e48d4,
+        type: 3}
+      propertyPath: jumpForceY
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4334919149020594926, guid: 35c83b8ac99ea9f43b7e8b753a9e48d4,
         type: 3}
       propertyPath: m_RootOrder

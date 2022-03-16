@@ -75,7 +75,9 @@ public class PlayerData
     /// Permet d'identifier les niveaux terminés
     /// </summary>
     private List<string> _listLevelDone;
-
+    /// <summary>
+    /// Liste des collectables ramassés dans leu
+    /// </summary>
     private List<string> _listCollectable;
 
     public int Energie { get { return this._energie; } }
@@ -151,13 +153,18 @@ public class PlayerData
         }
     }
 
-
+    /// <summary>
+    /// Permet d'augmenter le nombre de chapeaux collectés
+    /// </summary>
     public void IncrHat(int gain = 1)
     {
         this._hatCount += gain;
 
     }
 
+    /// <summary>
+    /// Permet d'augmenter le nombre de conventions collectés
+    /// </summary>
     public void IncrConv(int gain = 1)
     {
         this._convCount += gain;
@@ -233,17 +240,25 @@ public class PlayerData
         this._listLevelDone.Add(nom);
     }
 
+    /// <summary>
+    /// Permet de vérifier si le niveau est terminé
+    /// </summary>
     public bool AvoirNiveauTermine(string nom)
     {
         return this._listLevelDone.Contains(nom);
     }
 
-
+    /// <summary>
+    /// Permet d'ajouter un nom de collectable à liste de collectable ramassés
+    /// </summary>
     public void AjouterCollectable(string nom)
     {
         this._listCollectable.Add(nom);
     }
 
+    /// <summary>
+    /// Permet de terminé si le collectable a déjà été ramassé
+    /// </summary>
     public bool AvoirCollected(string nom)
     {
         return this._listCollectable.Contains(nom);
@@ -257,5 +272,18 @@ public class PlayerData
     public bool AvoirOuvertureCoffre(string nom)
     {
         return this._chestOpenList.Contains(nom);
+    }
+    /// <summary>
+    /// Reset si le gameover dans un niveau
+    /// </summary>
+    public void resetForGameOver(int vie = 1, int energie = 2, int score = 0, List<string> ListLevelDone = null, List<string> ChestList = null, List<string> CollectableList = null, int hatCount = 0, int convCount = 0)
+    {
+        this._vie = vie;
+        this._energie = energie;
+        this._listLevelDone = ListLevelDone;
+        this._chestOpenList = ChestList;
+        this._listCollectable = CollectableList;
+        this._hatCount = hatCount;
+        this._convCount = convCount;
     }
 }

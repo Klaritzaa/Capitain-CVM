@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerBehaviour : MonoBehaviour
 {
     /// <summary>
@@ -20,12 +20,20 @@ public class PlayerBehaviour : MonoBehaviour
     private void Start()
     {
         _animator = this.gameObject.GetComponent<Animator>();
+        
     }
 
     private void Update()
     {
         if (Time.fixedTime > _tempsDebutInvulnerabilite + EnnemyBehaviour.DelaisInvulnerabilite)
             _invulnerable = false;
+
+        /*if (GameManager.Instance.PlayerData.Vie <= 0)
+        {
+            //GameManager.Instance.PlayerData.resetForGameOver();
+
+            SceneManager.LoadScene("MainMenu");
+        }*/
     }
 
     public void CallEnnemyCollision()
