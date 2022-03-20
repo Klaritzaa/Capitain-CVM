@@ -47,18 +47,18 @@ public class EnemyJump : MonoBehaviour
     private bool _saute = false;
     private bool _tombe = false;
 
-    public float idleTime = 2f;
-    public float currentIdleTime = 0;
-    public bool isIdle = true;
+    private float _idleTime = 2f;
+    private float _currentIdleTime = 0;
+    private bool _isIdle = true;
 
-   
-    public float _PosY = 0;
+
+    private float _PosY = 0;
    
  
     // Start is called before the first frame update
     void Start()
     {
-      
+
         _PosY = transform.position.y;
         _rb = GetComponent<Rigidbody2D>();
         _sr = this.GetComponent<SpriteRenderer>();
@@ -67,15 +67,14 @@ public class EnemyJump : MonoBehaviour
 
     void Update()
     {
-
-        if (isIdle)
+        if (_isIdle)
         {
-            currentIdleTime += Time.deltaTime;
+            _currentIdleTime += Time.deltaTime;
 
-            if (currentIdleTime >= idleTime)
+            if (_currentIdleTime >= _idleTime)
             {
     
-                currentIdleTime = 0;
+                _currentIdleTime = 0;
                 _sr.flipX = !_sr.flipX;
                 Saute();
             }
@@ -85,15 +84,15 @@ public class EnemyJump : MonoBehaviour
         {
             _tombe = false;
             _saute = false;
-            isIdle = true;
+            _isIdle = true;
         }
-        else if(transform.position.y > _PosY && !_ausol && !isIdle)
+        else if(transform.position.y > _PosY && !_ausol && !_isIdle)
         {
             _saute = true;
             _tombe = false;
 
         }
-        else if(transform.position.y < _PosY && !_ausol && !isIdle)
+        else if(transform.position.y < _PosY && !_ausol && !_isIdle)
         {
             _saute = false;
             _tombe = true;
@@ -112,7 +111,7 @@ public class EnemyJump : MonoBehaviour
         {
             _ausol = true;
             Debug.Log("Au sol");
-            isIdle = true;
+            _isIdle = true;
         }
     }
 
@@ -123,17 +122,15 @@ public class EnemyJump : MonoBehaviour
     void Saute()
     {
         _saute = true;
-        isIdle = false;
+        _isIdle = false;
 
         int direction = 0;
 
-        
         if (_sr.flipX)
             direction = 1;
         else
             direction = -1;
 
-        
         _rb.velocity = new Vector3(jumpForceX * direction, jumpForceY);
 
         _animator.SetTrigger("JumpActif");

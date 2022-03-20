@@ -276,7 +276,7 @@ public class PlayerData
     /// <summary>
     /// Reset si le gameover dans un niveau
     /// </summary>
-    public void resetForGameOver(int vie = 1, int energie = 2, int score = 0, List<string> ListLevelDone = null, List<string> ChestList = null, List<string> CollectableList = null, int hatCount = 0, int convCount = 0)
+    /*public void resetForGameOver(int vie = 1, int energie = 2, int score = 0, List<string> ListLevelDone = null, List<string> ChestList = null, List<string> CollectableList = null, int hatCount = 0, int convCount = 0)
     {
         this._vie = vie;
         this._energie = energie;
@@ -285,5 +285,5 @@ public class PlayerData
         this._listCollectable = CollectableList;
         this._hatCount = hatCount;
         this._convCount = convCount;
-    }
+    }*/
 }

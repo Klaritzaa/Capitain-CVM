@@ -4,7 +4,7 @@
 /// pour l'objet <code>PlayerData</code>
 /// </summary>
 public static class PlayerDataJson
-{
+{ //List<string> ListLevelDone=null, List<string> ChestList = null, List<string> CollectableList = null,int hatCount=0,int convCount=0
     /// <summary>
     /// Sérialise un objet de type PlayerData au format JSON
     /// </summary>
@@ -57,6 +57,28 @@ public static class PlayerDataJson
             json += tab + "]" + newline;
         }
         else json += "]" + newline;
+
+        json += tab + "\"collectableList\":[";
+
+        if (data.CollectableList.Length > 0)
+        {
+            json += newline;
+            for (int i = 0; i < data.CollectableList.Length; i++)
+            {
+                string collectableData = data.CollectableList[i];
+                json += tab + tab + "\"" + collectableData + "\"";
+                if (i + 1 < data.CollectableList.Length)
+                    json += ",";
+                json += newline;
+            }
+            json += tab + "]" + newline;
+        }
+        else json += "]" + newline;
+
+        json += tab + "\"hatCount\":" + data.HatCount + "," + newline;
+        json += tab + "\"convCount\":" + data.ConventionCount + "," + newline;
+
+
         json += "}";
         return json;
     }
@@ -83,6 +105,9 @@ public static class PlayerDataJson
         float vlmGeneral = 0, vlmMusique = 0, vlmEffet = 0;
         List<string> chests = new List<string>();
         List<string> niveaux = new List<string>();
+        List<string> collectables = new List<string>();
+        int hatcount = 0;
+        int conventionCount = 0;
         string[] lignes = json.Split('\n');
         
         for(int i = 1; i < lignes.Length || lignes[i] != "}"; i++)
@@ -137,11 +162,30 @@ public static class PlayerDataJson
                             .Replace("\"", string.Empty));
                     }
                     break;
-
+                case "\"collectableList\"":
+                    if (parametre[1] == "[]")
+                        break;
+                    else if (parametre[1] != "[")
+                        throw new JSONFormatExpcetion();
+                    while (lignes[++i] != "]")
+                    {
+                        collectables.Add(lignes[i]
+                            .Replace(",", string.Empty)
+                            .Replace("\"", string.Empty));
+                    }
+                    break;
+                case "\"hatCount\"":
+                    hatcount = int.Parse(parametre[1]
+                        .Replace(",", string.Empty));
+                    break;
+                case "\"convCount\"":
+                    conventionCount = int.Parse(parametre[1]
+                        .Replace(",", string.Empty));
+                    break;
             }
         }
 
-        return new PlayerData(vie, energie, score, vlmGeneral, vlmMusique, vlmEffet, ListLevelDone : niveaux, ChestList: chests);
+        return new PlayerData(vie, energie, score, vlmGeneral, vlmMusique, vlmEffet, ListLevelDone : niveaux, ChestList: chests, CollectableList: collectables, hatCount : hatcount, convCount : conventionCount);
     }
 }
 
